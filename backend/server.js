@@ -13,14 +13,22 @@ const {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// CORS configuration for production
+// Update the CORS configuration
+const whitelist = [
+  'http://localhost:3000', 
+  'https://your-app-name.netlify.app'  // Replace with your actual Netlify URL
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    // Allow all origins for now - you can restrict this to your frontend URL later
-    return callback(null, true);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   }
 };
 
