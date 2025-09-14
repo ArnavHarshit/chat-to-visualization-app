@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 // Update the CORS configuration
 const whitelist = [
   'http://localhost:3000', 
-  'https://your-app-name.netlify.app'  // Replace with your actual Netlify URL
+  'https://vermillion-malasada-a6fa7b.netlify.app/'  // Replace with your actual Netlify URL
 ];
 
 const corsOptions = {
