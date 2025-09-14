@@ -13,19 +13,19 @@ const {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(express.json());
+// CORS configuration for production
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow all origins for now - you can restrict this to your frontend URL later
+    return callback(null, true);
+  }
+};
 
-// Serve static files from the React app in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-  
-  // The "catchall" handler: for any request that doesn't
-  // match one above, send back React's index.html file.
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
-}
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // Store connected SSE clients
 const clients = [];
@@ -35,6 +35,7 @@ app.get('/api/stream', (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.flushHeaders();
 
   const clientId = Date.now();
@@ -53,8 +54,12 @@ app.get('/api/stream', (req, res) => {
 // Broadcast to all connected clients
 function broadcastEvent(event, data) {
   clients.forEach(client => {
-    client.res.write(`event: ${event}\n`);
-    client.res.write(`data: ${JSON.stringify(data)}\n\n`);
+    try {
+      client.res.write(`event: ${event}\n`);
+      client.res.write(`data: ${JSON.stringify(data)}\n\n`);
+    } catch (error) {
+      console.error('Error broadcasting to client:', error);
+    }
   });
 }
 
@@ -112,6 +117,11 @@ app.get('/api/answers/:id', (req, res) => {
     return res.status(404).json({ error: 'Answer not found' });
   }
   res.json(answer);
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 app.listen(PORT, () => {
