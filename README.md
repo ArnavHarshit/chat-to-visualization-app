@@ -19,7 +19,7 @@ Backend: https://chat-to-visualization-app.onrender.com
 
 1. Clone the repository:
 
-   git clone https://github.com/your-username/chat-to-visualization-app.git  
+   git clone https://github.com/ArnavHarshit/chat-to-visualization-app.git  
    cd chat-to-visualization-app
 
 3. Install backend dependencies:
