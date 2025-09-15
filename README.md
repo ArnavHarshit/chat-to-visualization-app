@@ -12,7 +12,8 @@ A web application that explains concepts with both text and visualizations. User
 
 ## Demo
 
-Live demo: [Your deployed app URL]
+Live demo: https://vermillion-malasada-a6fa7b.netlify.app
+Backend: https://chat-to-visualization-app.onrender.com
 
 ## Installation
 
@@ -21,22 +22,22 @@ Live demo: [Your deployed app URL]
    git clone https://github.com/your-username/chat-to-visualization-app.git
    cd chat-to-visualization-app
 
-2. Install backend dependencies:
+3. Install backend dependencies:
 
     cd backend
     npm install
 
-3. Install frontend dependencies:
+4. Install frontend dependencies:
 
     cd ../frontend
     npm install
 
-4. Start the backend server:
+5. Start the backend server:
 
     cd ../backend
     npm run dev
 
-5. Start the frontend development server:
+6. Start the frontend development server:
 
     cd ../frontend
     npm start
@@ -56,7 +57,7 @@ Live demo: [Your deployed app URL]
 4. Deployment: Heroku (backend), Netlify (frontend)
 
 # Project Structure
-
+```
 chat-to-visualization-app/
 ├── backend/
 │   ├── server.js          # Express server
@@ -71,7 +72,7 @@ chat-to-visualization-app/
 │   │   └── index.js     # Entry point
 │   └── package.json     # Frontend dependencies
 └── README.md            # Project documentation
-
+```
 # API Endpoints
 1. POST /api/questions - Submit a new question
 2. GET /api/questions - Get all questions
