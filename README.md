@@ -12,35 +12,35 @@ A web application that explains concepts with both text and visualizations. User
 
 ## Demo
 
-Live demo: https://vermillion-malasada-a6fa7b.netlify.app
+Live demo: https://vermillion-malasada-a6fa7b.netlify.app  
 Backend: https://chat-to-visualization-app.onrender.com
 
 ## Installation
 
 1. Clone the repository:
 
-   git clone https://github.com/your-username/chat-to-visualization-app.git
+   git clone https://github.com/your-username/chat-to-visualization-app.git  
    cd chat-to-visualization-app
 
 3. Install backend dependencies:
 
-    cd backend
+    cd backend  
     npm install
 
 4. Install frontend dependencies:
 
-    cd ../frontend
+    cd ../frontend  
     npm install
 
 5. Start the backend server:
 
-    cd ../backend
+    cd ../backend  
     npm run dev
 
 6. Start the frontend development server:
 
-    cd ../frontend
-    npm start
+    cd ../frontend  
+    npm start  
     Open your browser and navigate to http://localhost:3000
 
 # Usage
